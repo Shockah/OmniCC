@@ -87,11 +87,12 @@ function Timer:UpdateFontSize(width, height)
 end
 
 function Timer:UpdateText(forceStyleUpdate)
-	if self.start > (GetTime() or 0) then
-		return self:ScheduleUpdate(self.start - (GetTime() or 0))
+	if self.start > GetTime() then
+		return self:ScheduleUpdate(self.start - GetTime())
 	end
 
 	local remain = self:GetRemain()
+	remain = remain + 0.5
 	if remain > 0 then
 		local overallScale = self.abRatio * (self:GetEffectiveScale()/UIParent:GetScale())
 
