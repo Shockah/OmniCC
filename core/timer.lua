@@ -96,7 +96,7 @@ function Timer:UpdateFontSize(width, height)
 end
 
 function Timer:UpdateText(forceStyleUpdate)
-	if self.start > GetTime() then
+	if self.start and self.start > (GetTime() or 0) then
 		return self:ScheduleUpdate(self.start - GetTime())
 	end
 
@@ -231,19 +231,19 @@ function Timer:GetTimeText(remain)
 	local sets = self:GetSettings()
 
 	if remain < sets.tenthsDuration then
-		return L.TenthDuration, remain
+		return L.TenthsFormat, remain
 	elseif remain < Minuteish then
 		local seconds = round(remain)
 		return seconds ~= 0 and seconds or ''
 	elseif remain < sets.mmSSDuration then
 		local seconds = round(remain)
-		return L.MMSSDuration, seconds/Minute, seconds%Minute
+		return L.MMSSFormat, seconds/Minute, seconds%Minute
 	elseif remain < Hourish then
-		return L.MinuteDuration, round(remain/Minute)
+		return L.MinuteFormat, round(remain/Minute)
 	elseif remain < Dayish then
-		return L.HourDuration, round(remain/Hour)
+		return L.HourFormat, round(remain/Hour)
 	else
-		return L.DayDuration, round(remain/Day)
+		return L.DayFormat, round(remain/Day)
 	end
 end
 

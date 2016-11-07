@@ -17,11 +17,13 @@ Pulse.active = {}
 --[[ Run ]]--
 
 function Pulse:Run(cooldown)
-	local button = cooldown:GetParent()
-	local icon = OmniCC:GetButtonIcon(button)
-	
-	if icon then
-		self.active[cooldown]:Start(icon)
+	if self.active[cooldown] then
+		local button = cooldown:GetParent()
+		local icon = OmniCC:GetButtonIcon(button)
+		
+		if icon then
+			self.active[cooldown]:Start(icon)
+		end
 	end
 end
 
@@ -89,11 +91,11 @@ do
 		g:SetScript('OnFinished', animation_OnFinished)
 
 		local grow = g:CreateAnimation('Scale')
-		grow:SetScale(PULSE_SCALE, PULSE_SCALE)
-		grow:SetOrigin('CENTER', 0, 0)
-		grow:SetDuration(PULSE_DURATION/2)
-		grow:SetOrder(0)
 		grow:SetScript('OnFinished', scale_OnFinished)
+		grow:SetScale(PULSE_SCALE, PULSE_SCALE)
+		grow:SetDuration(PULSE_DURATION/2)
+		grow:SetOrigin('CENTER', 0, 0)
+		grow:SetOrder(0)
 
 		return g
 	end

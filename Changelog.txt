@@ -1,3 +1,20 @@
+===== 7.1.0
+* Updated for WoW patch 7.1.
+* Now ignores global cooldown automatically.
+* Sliders in the general options now provide higher precision.
+
+====== 7.0.1
+* Tagging as release.
+
+===== 7.0.0 (beta)
+* Updated for Legion.
+
+====== 6.2.5
+* Hotfix of timer format.
+
+====== 6.2.4
+* Apparently Blizzard's cooldown formats are not appropriate on some locales. Reverting back to custom locales.
+
 ====== 6.2.3
 * Fixed issue with the new "ChargeTimer" overlays (so much for implementing timers in C++, Blizzard)
 
