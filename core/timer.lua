@@ -97,7 +97,7 @@ end
 
 function Timer:UpdateText(forceStyleUpdate)
 	if self.start and self.start > (GetTime() or 0) then
-		return self:ScheduleUpdate(self.start - GetTime())
+		return self:ScheduleUpdate(self.start - (GetTime() or 0))
 	end
 
 	local remain = self:GetRemain()
@@ -123,7 +123,7 @@ function Timer:UpdateText(forceStyleUpdate)
 			self:ScheduleUpdate(self:GetNextUpdate(remain))
 		end
 	else
-		if self.duration >= self:GetSettings().minEffectDuration then
+		if self.duration and self.duration >= self:GetSettings().minEffectDuration then
 			OmniCC:TriggerEffect(self.cooldown)
 		end
 		
